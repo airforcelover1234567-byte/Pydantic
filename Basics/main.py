@@ -1,1 +1,1 @@
-num=int(input("Enter a number: "))
+import pydantic
