@@ -7,7 +7,7 @@ from typing import Optional
 #department
 #salary
 
-class Employee(BaseModel)
+class Employee(BaseModel):
     id: int
     name: str =Field(...,
                 min_length=3,
