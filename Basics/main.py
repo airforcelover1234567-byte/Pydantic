@@ -13,9 +13,9 @@ print(user)
 class Product(BaseModel):
     id: int
     name: str
-    price: int
-    in_stock: bool
+    price: float
+    in_stock: bool =True
 
-product_data={"id":101,"name":"Legion", "price":120000, "in_stock":False}
+product_data={"id":101,"name":"Legion", "price":12000.00, "in_stock":False}
 product=Product(**product_data)
 print(product)
