@@ -9,3 +9,13 @@ input_data={"id":101, "name":"Rounak", "is_active":'True'} #This is not an error
 
 user=User(**input_data)
 print(user)
+
+class Product(BaseModel):
+    id: int
+    name: str
+    price: int
+    in_stock: bool
+
+product_data={"id":101,"name":"Legion", "price":120000, "in_stock":False}
+product=Product(**product_data)
+print(product)
