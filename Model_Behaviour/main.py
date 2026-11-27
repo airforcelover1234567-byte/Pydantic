@@ -21,5 +21,16 @@ class SIgnup(BaseModel):
 
 class inputs(BaseModel):
     name: int
-object=inputs(name="Rounak")
+object=inputs(name=1)
 
+class Name(BaseModel):
+    first_name: str
+    last_name: str
+
+    @computed_field
+    @property
+    def fullname(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+
+persons=Name(first_name="Rounak",last_name="Roy")
+print(persons.fullname)
