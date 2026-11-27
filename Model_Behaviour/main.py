@@ -19,15 +19,7 @@ class SIgnup(BaseModel):
             raise ValueError("Passwords do not match")
         return values
 
-class Product(BaseModel):
-    price: float
-    quantity: int
-
-    @computed_field
-    @property
-    def total_price(self) -> float:
-        return self.price*self.quantity
-
 class inputs(BaseModel):
     name: int
 object=inputs(name="Rounak")
+
