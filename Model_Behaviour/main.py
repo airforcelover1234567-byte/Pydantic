@@ -1,36 +1,21 @@
-from pydantic import BaseModel,field_validator,model_validator,computed_field
+from pydantic import BaseModel,computed_field,model_validator,field_validator
 
 class User(BaseModel):
     username: str
 
-    @field_validator("username")
-    def username(cls,v):
-        if len(v)>4:
-            raise ValueError("Length should be atleast 4 characters")
-        return v
+    @field_validator('username')
+    def username_validation(cls, value):
+        if len(value)<4:
+            raise ValueError("Username atleast must be 4 characters")
+        return value
 
-class SIgnup(BaseModel):
+class signup(BaseModel):
     password: str
     confirm_password: str
 
-    @model_validator(mode="after")
+    @model_validator(mode='after')
     def password_match(cls, values):
         if values.password!=values.confirm_password:
-            raise ValueError("Passwords do not match")
+            raise ValueError("Your passwords do not match")
         return values
-
-class inputs(BaseModel):
-    name: int
-object=inputs(name=1)
-
-class Name(BaseModel):
-    first_name: str
-    last_name: str
-
-    @computed_field
-    @property
-    def fullname(self) -> str:
-        return f"{self.first_name} {self.last_name}"
-
-persons=Name(first_name="Rounak",last_name="Roy")
-print(persons.fullname)
+    
