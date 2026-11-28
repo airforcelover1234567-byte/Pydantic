@@ -18,4 +18,13 @@ class signup(BaseModel):
         if values.password!=values.confirm_password:
             raise ValueError("Your passwords do not match")
         return values
+
+class Products(BaseModel):
+    price: int
+    quantity: int
+
+    @computed_field
+    @property
+    def total_price(self) -> float:
+        return self.price*self.quantity
     
