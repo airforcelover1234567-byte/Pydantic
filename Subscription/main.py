@@ -6,16 +6,12 @@ class Subscription(BaseModel):
     months: int
     discount: int
 
-    @field_validator('plan','monthly_price')
+    @field_validator('plan')
     @classmethod
-    def plan_check(cls,value:str,price:int):
-        if value.lower()!="basic" or "pro" or "enterprise":
+    def plan_check(cls,value):
+        if value.lower() not in "basic" or "pro" or "enterprise":
             print("Enter a proper plan")
-        else:
-            match value:
-                case "basic":
-                    if price>500:
-                        print("You cannot pay so much money")
+        return value
 
-user=Subscription(plan="Basic",monthly_price=600)
-user.plan_check
+plan=str(input("Enter a plan: "))
+user=Subscription(plan=plan)
