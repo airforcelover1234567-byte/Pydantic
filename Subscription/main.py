@@ -13,7 +13,7 @@ class Subscription(BaseModel):
             raise ValueError("Enter a proper plan")
         return value
 
-    @field_validator(mode="after")
+    @model_validator(mode="after")
     @classmethod
     def basic_check(cls,value):
         if value.plan.lower()=="basic" and value.monthly_price>500:
