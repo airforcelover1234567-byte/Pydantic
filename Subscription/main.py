@@ -10,9 +10,18 @@ class Subscription(BaseModel):
     @classmethod
     def plan_check(cls,value):
         if value.lower() not in "basic" or "pro" or "enterprise":
-            print("Enter a proper plan")
+            raise ValueError("Enter a proper plan")
+        return value
+
+    @field_validator(mode="after")
+    @classmethod
+    def basic_check(cls,value):
+        if value.plan.lower()=="basic" and value.monthly_price>500:
+            raise ValueError("For Basic, monthly price cannot be more than 500")
         return value
 
 plan=str(input("Enter a plan: "))
 monthly_price=int(input("Enter the monthly price: "))
+months=int(input("Enter the month: "))
+discount=int(input("Enter the discount: "))
 user=Subscription(plan=plan)
