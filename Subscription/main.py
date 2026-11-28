@@ -14,4 +14,5 @@ class Subscription(BaseModel):
         return value
 
 plan=str(input("Enter a plan: "))
+monthly_price=int(input("Enter the monthly price: "))
 user=Subscription(plan=plan)
